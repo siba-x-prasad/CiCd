@@ -68,3 +68,5 @@
 - While similar, Continuous Deployment and Continuous Delivery are not the same:
 - **Continuous Delivery:** Every code change is prepared for release and could be deployed to production, but the actual deployment may require a manual approval step.
 - **Continuous Deployment:** Goes a step further by automating the deployment of every validated code change to production without manual approval, achieving full automation of the release process.
+## Difference between Ci and CD
+![CIVsCd](https://github.com/siba-x-prasad/CiCd/blob/main/images/ciVsCd.png)
