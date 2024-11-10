@@ -1,4 +1,9 @@
-# Continuous Integration and Continuous Deplouyment
+# CI/CD
+## Important Links
+- https://github.com/jenkinsci/docker
+- 
+
+## Continuous Integration and Continuous Deployment
 - Continuous integration, delivery, and deployment (CI/CD) are foundational for successful DevOps practices.
 - CI/CD focuses on building a streamlined, automated software release process.
 - Teams practicing CI/CD gather continuous feedback by releasing software to the end user as quickly as possible, learning from users' experiences, and incorporating those insights into future releases.
