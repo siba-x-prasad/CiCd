@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  stages {
+    stage("Clean Up"){
+        steps {
+            echo "Stage : Clean Up"
+            deleteDir()
+        }
+    }   
+    stage("Clone Repo") {
+        steps {
+            echo "Stage : Clone Repo"
+        }
+    }
+    stage("Build") {
+        steps {
+          echo "Stage : Building"
+        }
+    }
+    stage("Test"){
+        steps {
+           echo "Stage : Testing"
+        }
+    }
+    stage("Finish"){
+        steps {
+           echo "Clean Up"
+        }
+    }
+  }
+}

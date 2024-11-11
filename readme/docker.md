@@ -1,4 +1,7 @@
 # Docker
+- [Official Website](https://www.docker.com)
+- https://github.com/jenkinsci/docker
+- [Official Training Videos](https://www.docker.com/resources/trainings/)
 - Docker is an open-source platform that allows developers to automate the deployment, scaling, and management of applications by packaging them into "containers." Containers are lightweight, standalone, and portable units that include everything an application needs to run—such as code, libraries, dependencies, and runtime. 
 - This containerization ensures that an application behaves the same way regardless of where it runs, making it highly portable and consistent.
 
@@ -43,3 +46,15 @@
 - Run a Container based on the image.
 - Test and Deploy the container in different environments, ensuring consistency and reliability.
 - In summary, Docker is a powerful tool that allows for efficient, consistent, and portable application deployment and management, making it a cornerstone of modern DevOps and cloud-native development.
+
+# Docker tutorial
+- Install docker desktop app in your system.
+- start Docker in your system.
+- It will redirect to website for login.
+- then use the below command
+- ```docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure jenkins/jenkins:lts-jdk17```
+- It will generate a password
+- Keep this to use in the flow.
+- User name :  admin
+- Password : The password generated in commandline. (f7b6ea9ba79843b9b977384ad198c57c)
+- Then open
