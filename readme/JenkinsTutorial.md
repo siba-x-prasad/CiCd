@@ -101,4 +101,46 @@ pipeline {
 - paste the above code block inside the pipeline script
 - Save
 - Start Build
-- 
+
+## Github Jenkins
+- In this case, we will provide the github link and it will
+- Steps
+- Create your own Maven project or clone it from somewhere
+- Create a Jenkins file and write the stages like above
+- I am using this repo https://github.com/siba-x-prasad/jenkins-aws-java-maven-app-Swasi.git
+- You will find the JenkinsFile here : https://github.com/siba-x-prasad/jenkins-aws-java-maven-app-Swasi/tree/main/jenkinsfiles
+- Now open localhost/8080
+- Create new Item
+- Select PipeLine
+- Enter name of the pieline
+- under Pipeline section
+  - select ```Pipeline script from SCM```
+  - SCM : select git
+  - Repository URL : use your repository
+  - Credential if it's a private repository, for public repository, no credential require
+  - Select the branch you want to proceed with (In this case main branch)
+  - Script Path : path of the JenkinsFile
+- Click save, then build the 
+## Polling SCM (How to get latest coe from Github)
+- Got to pipeline in Jenkins
+- select configure
+- Go to Build Trigger Section
+- Select Poll SCM
+- For time visit : https://crontab.guru
+- In my case, it will run after 2 minutes - ```H/2 * * * *```
+- That means, If any changes occur in Github, after 2 minutes, it will trigger Jenkins build
+- We don't need to trigger the Jenkins Build
+- It will automatically trigger the build 2 minutes after commit.
+
+## Multi Branch Pipe Line
+- Create New Item
+- Enter Pipe Line
+- Select MultiBranch Pipeline
+- Now Select Git
+- Enter the repository
+- It will fetch all the branches
+- Then enter the path of the Jenkins files in each branch
+- Make sure all have the same path
+- Set the time as 2 minutes
+- Once you save it, it will start building for the number of branch u have
+- If there are 3 branches, then 3 Build Pipe line will run parallelly.
