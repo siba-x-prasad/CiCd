@@ -144,3 +144,59 @@ pipeline {
 - Set the time as 2 minutes
 - Once you save it, it will start building for the number of branch u have
 - If there are 3 branches, then 3 Build Pipe line will run parallelly.
+## Parameterized Pipeline
+## Boolean parameter
+```
+pipeline {
+  agent any
+  parameters {
+    booleanParam(defaultValue: false, description: "Enable Service?", name:"myBoolean")
+  }
+ 
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "booleanParam is set to : ${params.myBoolean}"
+        }
+    }   
+  }
+}
+```
+## String Param
+```
+pipeline {
+  agent any
+  
+  parameters {
+    string(defaultValue: "TEST", description: "Which Environment to deploy", name:"deployEnv")
+  }
+
+  stages {
+    stage("String Parameter Demo"){
+        steps {
+            echo "Which Environment to deplay : ${params.deployEnv}"
+        }
+    }
+  }
+}
+```
+## Multiple Choice
+```
+pipeline {
+  agent any
+  parameters {
+    choice(choices: ["TEST", "DEV", "QA", "PRE-PROD"], description: "Which Environment to deploy", name:"deployEnv")
+  }
+
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "Choice is set to : ${params.deployEnv}"
+        }
+    }
+  }
+}
+```
+- Got to dashboard
+- ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/multipleChoiceParam.png)
+- ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/selectMultipleChoiceBuild.png)

@@ -1,0 +1,14 @@
+pipeline {
+  agent any
+  parameters {
+    string(defaultValue: "TEST, description: "Which Environment to deploy", name:"deployEnv")
+  }
+
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "booleanParam is set to : ${params.deployEnv}"
+        }
+    }
+  }
+}
