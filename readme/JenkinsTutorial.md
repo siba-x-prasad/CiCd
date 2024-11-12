@@ -226,3 +226,152 @@ pipeline {
 - ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/selectMultipleChoiceBuild.png)
 - ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/challenge3.png)
 - In Console output u will see the values u printed above.
+## Jenkins Variable
+- In Jenkins Pipelines, a variable is a symbolic name that represents data that can change dynamically during the execution of the pipeline. 
+- Variables are essential for managing configuration settings, storing data, and controlling the behavior of your pipeline scripts.
+- **Environment Variables:** 
+  - These are key-value pairs available to the Jenkins environment and can be accessed within your pipeline script. 
+  - They usually include system-specific configurations or user-defined variables. 
+  - Access them using env.VARIABLE_NAME.
+- Example
+```
+pipeline {
+  agent any
+  
+  environment {
+    def myString = "Hello World"
+    def myNumber = 10
+    def myBool = true
+  }
+
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "myString : ${myString} \n"
+            echo "myNumber : ${myNumber} \n"
+            echo "myBool : ${myBool} \n"
+        }
+    }
+  }
+}
+```
+## Jenkins Specific Environment Variable
+- [Visit here] (https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
+- Search for BUILD_NUMBER
+- ```
+  echo "Current workspace: ${env.WORKSPACE}"
+  echo "BUILD NUMBER: ${env.BUILD_NUMBER}"
+  ```
+## Advance Jenkins
+- In background jenkins uses groovy as a language
+- Learn the basic of groovy [here] (https://groovy-lang.org/documentation.html#gettingstarted)
+- To write complex pipeline logic, you need groovy
+## Build Health
+- **Sunshine:** All builds are successful
+- **Cloudy:** some of the builds are successful
+- **Raining:** all builds are failing
+## Credential
+- follow for more : https://www.jenkins.io/doc/book/using/using-credentials/
+
+## JenkinsFile name
+
+## Multiple Jenkins Files
+- You can have multiple different jenkins files in a project.
+- every files have different purpose
+
+## Debug
+- use ```sleep(10)``` to halt the buld process for 10 seconds
+```
+pipeline {
+  agent any
+  
+  environment {
+    def myString = "Hello World"
+    def myNumber = 10
+    def myBool = true
+  }
+
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "myString : ${myString} \n"
+            echo "myNumber : ${myNumber} \n"
+            echo "myBool : ${myBool} \n"
+            sleep(20)
+            echo "Current workspace: ${env.WORKSPACE}"
+            echo "BUILD NUMBER: ${env.BUILD_NUMBER}"
+        }
+    }
+  }
+}
+```
+## if statement
+```
+pipeline {
+  agent any
+  parameters {
+    booleanParam(defaultValue: false, description: "enableService ?", name: "isServiceEnable")
+  }
+
+  stages {
+    stage("If statement demo"){
+       steps {
+          script {
+              if(params.isServiceEnable == false) {
+                currentBuild.result = "SUCCESS"
+                return
+              } 
+              else {
+                echo "isServiceEnable set to : TRUE"
+              }
+          }
+       }
+    }
+  }
+}
+```
+## Function
+- In jenkins use function if you want to perform some action multiple times.
+```
+pipeline {
+  agent any
+
+  stages {
+    stage("Demo"){
+       steps {
+          myFunc("Sibaprasad")
+          myFunc("abcd")
+       }
+    }
+  }
+}
+
+def myFunc(String myText) {
+    echo "NAME is ${myText} \n"
+}
+```
+## Variable Scope
+```
+pipeline {
+  agent any
+
+environment {
+  def name = "Sibaprasad"
+}
+  stages {
+    stage("Demo"){
+       steps {
+          myFunc("Sibaprasad")
+          myFunc("abcd")
+       }
+    }
+  }
+}
+
+def myFunc(String myText) {
+    def localName = "abcd"
+    echo "NAME is ${myText} \n"
+}
+```
+- above name variable is global
+- localName is local to function only
