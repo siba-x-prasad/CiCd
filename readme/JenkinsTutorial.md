@@ -200,3 +200,29 @@ pipeline {
 - Got to dashboard
 - ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/multipleChoiceParam.png)
 - ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/selectMultipleChoiceBuild.png)
+## Choice with confirmation checkbox
+```
+pipeline {
+  agent any
+  parameters {
+    string(defaultValue: "", description: "Deployment Name?", name: "deploymentName")
+    choice(choices: ["TEST", "DEV", "QA", "PRE-PROD"], description: "Which Environment to deploy", name:"deployEnv")
+    booleanParam(defaultValue: false, description: "Confirm Deployment", name: "confirmDeployment")
+  }
+
+  stages {
+    stage("Boolean Parameter Demo"){
+        steps {
+            echo "Deployment Name set to : ${params.deploymentName} \n"
+            echo "Choice is set to : ${params.deployEnv} \n"
+            echo "bool is set to : ${params.confirmDeployment} \n"
+        }
+    }
+  }
+}
+```
+- Got to dashboard
+- ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/multipleChoiceParam.png)
+- ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/selectMultipleChoiceBuild.png)
+- ![CI](https://github.com/siba-x-prasad/CiCd/blob/main/images/challenge3.png)
+- In Console output u will see the values u printed above.
