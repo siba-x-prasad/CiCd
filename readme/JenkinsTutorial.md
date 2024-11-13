@@ -375,3 +375,54 @@ def myFunc(String myText) {
 ```
 - above name variable is global
 - localName is local to function only
+## Multiline bash shell
+```
+sh """
+// u can write ur multiline bash hare
+"""
+```
+## Job from a Job
+```
+pipeline {
+  agent any
+  stages {
+    stage("Clean Up"){
+        steps {
+            deleteDir()
+        }
+    }   
+    stage("Clone Repo") {
+        steps {
+            sh "git clone https://github.com/akiltipu/jenkins-aws-java-maven-app.git"
+        }
+    }
+    stage("Build") {
+        steps {
+           dir("jenkins-aws-java-maven-app") {
+              sh "mvn clean install"
+           }
+        }
+    }
+    stage("Build Remote "){
+        steps {
+           build 'Challenge3' 
+        }
+    }
+  }
+}
+```
+- above Challenge3 is another pipeline
+## Pass Parameters Between Jobs
+```
+stage("Build Remote "){
+        steps {
+           build job: 'Challenge3', parameters: [[$class: 'BooleanParameterValue', name:'myBoolean', value: true]] 
+        }
+    }
+```
+## Plugins
+
+## Delete Docker Volume
+- docker container ls -a
+- docker container 
+- docker volume rm jenkins_home
